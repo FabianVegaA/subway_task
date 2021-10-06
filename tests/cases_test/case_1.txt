@@ -1,0 +1,23 @@
+#STATIONS
+a white
+b white
+c white
+d white
+e white
+f white
+g green
+h red
+i green
+#END STATIONS 
+
+#ROUTES
+a b
+b c
+c d
+c g
+d e
+e f
+g h
+h i
+i f
+# END ROUTES

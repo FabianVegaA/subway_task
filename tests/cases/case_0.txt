@@ -1,0 +1,11 @@
+#STATIONS
+a
+b red
+c green
+#END STATIONS
+
+#ROUTES
+a b
+b c
+c a
+#END ROUTES

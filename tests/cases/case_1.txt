@@ -1,14 +1,14 @@
 #STATIONS
-a white
-b white
-c white
-d white
-e white
-f white
+a
+b
+c
+d
+e
+f
 g green
 h red
 i green
-#END STATIONS 
+#END STATIONS
 
 #ROUTES
 a b

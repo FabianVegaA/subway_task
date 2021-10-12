@@ -57,9 +57,6 @@ class Subway:
 
         self._type_station: Optional[List[str]] = []
 
-        if self._path == "" and self.stations is None and self.routes is None:
-            raise ValueError("No path given")
-
         if self.stations is None or self.routes is None:
             self._read_stations()
 
@@ -114,16 +111,21 @@ class Subway:
             )
             self.routes.append(route)
 
+    def _get_neighbors(self, st):
+        for s1, s2 in self.routes:
+            if st in [s1, s2]:
+                yield s1 if s1 != st else s2
+
     def neighbor_stations(
         self, curr_st: Station, type_train: str
     ) -> Generator[Station, None, None]:
         """
-        It returns the neighbors of a station
+        It returns the neighbors of a station filteing the stations by type.
 
         Parameters
         ----------
         curr_st : Station
-            Current stationtation
+            Current station
         type_train : str
             Type of train
 
@@ -134,22 +136,20 @@ class Subway:
         """
         assert self.routes is not None
 
-        queuqe: List[Station] = [curr_st]
+        queue: List[Station] = [curr_st]
         visited: Set[str] = {curr_st.name}
 
-        while len(queuqe) > 0:
-            st: Station = queuqe.pop(0)
+        while len(queue) > 0:
+            st: Station = queue.pop(0)
 
-            for s1, s2 in self.routes:
-                if st in [s1, s2]:
-                    adj: Station = s1 if s1 != st else s2
-                    if adj.name not in visited:
-                        if (
-                            type_train != ""
-                            and adj.type != ""
-                            and adj.type != type_train
-                        ):
-                            queuqe.append(adj)
-                        else:
-                            visited.add(adj.name)
-                            yield adj
+            for neighbor in self._get_neighbors(st):
+                if neighbor.name not in visited:
+                    if (
+                        type_train != ""
+                        and neighbor.type != ""
+                        and neighbor.type != type_train
+                    ):
+                        queue.append(neighbor)
+                    else:
+                        visited.add(neighbor.name)
+                        yield neighbor

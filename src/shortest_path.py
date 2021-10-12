@@ -1,10 +1,6 @@
-from typing import Dict
-from typing import Iterable
-from typing import List
-from typing import Optional
+from typing import Dict, Iterable, List, Optional
 
-from src.station_reader import Station
-from src.station_reader import Subway
+from src.station_reader import Station, Subway
 
 
 class Path:
@@ -35,6 +31,7 @@ class ShortestPath:
             Path to the file containing the subway network.
         """
         self.subway = Subway(path)
+        self.type_train = ""
 
     def find_shortest_path(
         self,

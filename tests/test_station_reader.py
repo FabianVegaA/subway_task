@@ -1,11 +1,8 @@
-from typing import List
-from typing import Tuple
+from typing import List, Tuple
 
 import pytest
 
-from src.station_reader import Station
-from src.station_reader import Subway
-
+from src.station_reader import Station, Subway
 
 cases: List[Tuple[str, Subway]] = [
     (

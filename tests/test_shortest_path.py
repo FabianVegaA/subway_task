@@ -1,12 +1,9 @@
-from typing import List
-from typing import Tuple
+from typing import List, Tuple
 
 import pytest
 
-from src.shortest_path import Path
-from src.shortest_path import ShortestPath
+from src.shortest_path import Path, ShortestPath
 from src.station_reader import Subway
-
 
 cases_neighbors: List[Tuple[Tuple[str, str, str], List[str]]] = [
     (("tests/cases/case_0.txt", "a", "g"), ["c"]),

@@ -4,7 +4,10 @@ import os
 from src.shortest_path import ShortestPath
 
 
-def main():
+def main(
+    *args,
+    **kwargs,
+):
     parser = argparse.ArgumentParser()
     parser.add_argument("source", type=str, help="Source station")
     parser.add_argument("destination", type=str, help="Destination station")
@@ -20,19 +23,18 @@ def main():
     )
     parser.add_argument("-v", "--verbosity", action="count", default=0)
 
-    args = parser.parse_args()
+    args_ = parser.parse_args(args)
 
-    print(f"{args.filename}")
-    if os.path.isfile(args.filename):
+    if os.path.isfile(args_.filename):
 
-        sp = ShortestPath(args.filename).find_shortest_path(
-            args.source, args.destination, args.color
+        sp = ShortestPath(args_.filename).find_shortest_path(
+            args_.source, args_.destination, args_.color
         )
 
-        if args.verbosity == 0:
+        if args_.verbosity == 0:
             print(str(sp))
 
-        if args.verbosity == 1:
+        if args_.verbosity == 1:
             print(
                 "The shortest path is: \n"
                 + str(sp)
@@ -40,14 +42,14 @@ def main():
                 + f"The total distance is: {len(sp.stations)}"
             )
 
-        if args.verbosity >= 2:
+        if args_.verbosity >= 2:
             print(
                 "The shortest path is: \n"
                 + repr(sp)
                 + "\n"
                 + f"The total distance is: {len(sp.stations)}"
             )
-    raise FileNotFoundError(f"File {args.filename} not found")
+    raise FileNotFoundError(f"File {args_.filename} not found")
 
 
 if __name__ == "__main__":

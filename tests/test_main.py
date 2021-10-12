@@ -15,6 +15,6 @@ test_filenames_exceptions: List[str] = [
 @pytest.mark.parametrize("filename", test_filenames_exceptions)
 def test_filesnames_exceptions(filename):
     with pytest.raises(FileNotFoundError) as execinfo:
-        main("a", "b", filename)
+        main(["a", "b", filename])
 
         assert execinfo.value == f"File {filename} is found"

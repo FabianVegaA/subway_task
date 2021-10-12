@@ -1,13 +1,11 @@
 import argparse
 import os
+import sys
 
 from src.shortest_path import ShortestPath
 
 
-def main(
-    *args,
-    **kwargs,
-):
+def main(*args):
     parser = argparse.ArgumentParser()
     parser.add_argument("source", type=str, help="Source station")
     parser.add_argument("destination", type=str, help="Destination station")
@@ -23,7 +21,7 @@ def main(
     )
     parser.add_argument("-v", "--verbosity", action="count", default=0)
 
-    args_ = parser.parse_args(args)
+    args_ = parser.parse_args(*args)
 
     if os.path.isfile(args_.filename):
 
@@ -53,4 +51,4 @@ def main(
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

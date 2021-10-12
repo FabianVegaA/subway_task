@@ -1,6 +1,6 @@
 # Tarea Buda.com - Metro
 
-![Tests](https://github.com/FabianVegaA/subway_task/actions/workflows/tests.yml/badge.svg)
+[![Tests](https://github.com/FabianVegaA/subway_task/actions/workflows/test.yml/badge.svg)](https://github.com/FabianVegaA/subway_task/actions/workflows/test.yml)
 
 - [Tarea Buda.com - Metro](#tarea-budacom---metro)
   - [Introducción](#introducción)

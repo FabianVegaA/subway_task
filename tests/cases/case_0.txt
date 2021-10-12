@@ -1,7 +1,7 @@
 #STATIONS
 a
-b red
-c green
+b r
+c g
 #END STATIONS
 
 #ROUTES

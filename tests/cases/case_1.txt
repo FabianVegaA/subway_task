@@ -5,9 +5,9 @@ c
 d
 e
 f
-g green
-h red
-i green
+g g
+h r
+i g
 #END STATIONS
 
 #ROUTES

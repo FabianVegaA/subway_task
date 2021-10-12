@@ -12,6 +12,10 @@ from typing import Tuple
 class Station:
     """
     Station class
+
+    Attributes:
+        name (str): name of the station
+        type (str): type of the station
     """
 
     name: str
@@ -32,11 +36,29 @@ class Subway:
         stations: Optional[Dict[str, Station]] = None,
         routes: Optional[List[Tuple[Station, Station]]] = None,
     ) -> None:
+        """
+        This is the constructor of the class Subway
+
+        If no path is given
+
+        Parameters
+        ----------
+        path : str
+            Path of the file
+        stations : Dict[str, Station]
+            Dictionary of stations
+        routes : List[Tuple[Station, Station]]
+            List of routes
+        """
+
         self._path = path
         self.stations = stations
         self.routes = routes
 
         self._type_station: Optional[List[str]] = []
+
+        if self._path == "" and self.stations is None and self.routes is None:
+            raise ValueError("No path given")
 
         if self.stations is None or self.routes is None:
             self._read_stations()
@@ -45,12 +67,9 @@ class Subway:
         return len(self.stations)
 
     def _read_stations(self) -> None:
-        """
-        Read stations from file
-        """
 
         with open(self._path) as file:
-            while (line := file.readline()) != "":
+            while line := file.readline():
 
                 if re.match(r"^#\s*STATIONS", line):
                     self._parse_stations(file, line)
@@ -58,9 +77,7 @@ class Subway:
                     self._parse_routes(file, line)
 
     def _parse_stations(self, file, current_line: str) -> None:
-        """
-        Parse stations from file
-        """
+
         assert re.match(r"^#\s*STATIONS", current_line)
 
         self.stations = {}
@@ -80,9 +97,7 @@ class Subway:
             self.stations[name] = Station(name, type_)
 
     def _parse_routes(self, file, current_line: str):
-        """ "
-        Parse routes from file
-        """
+
         assert self.stations is not None
         assert re.match(r"^#\s*ROUTES", current_line)
 
@@ -116,7 +131,6 @@ class Subway:
         -------
         List[Station]
             List of neighbors
-
         """
         assert self.routes is not None
 

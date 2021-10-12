@@ -9,7 +9,7 @@ from src.station_reader import Subway
 
 cases: List[Tuple[str, Subway]] = [
     (
-        "tests/cases_test/case_0.txt",
+        "tests/cases/case_0.txt",
         Subway(
             stations={
                 "a": Station("a", ""),

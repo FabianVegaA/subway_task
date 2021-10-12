@@ -14,6 +14,17 @@ class Path:
     def __str__(self):
         return " -> ".join([str(station) for station in self.stations])
 
+    def __repr__(self):
+
+        default: str = "Without Color"
+
+        stations: List[Station] = []
+
+        for st in self.stations:
+            stations.append(f"({st.name}, {st.color or default})")
+
+        return " -> ".join(stations)
+
 
 class ShortestPath:
     def __init__(self, path: str):

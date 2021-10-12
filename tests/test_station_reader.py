@@ -37,3 +37,17 @@ def test_station_reader(path: str, expected: Station) -> None:
 
     for (st_1, st_2), (est_1, est_2) in zip(subway.routes, expected.routes):
         assert st_1.name == est_1 and st_2.name == est_2
+
+
+cases_invalid_path: List[Tuple[str, str]] = [
+    ("invalid_path.txt", "File not found"),
+    ("invalid_path.png", "Invalid file"),
+    ("", "Invalid file"),
+]
+
+
+@pytest.mark.parametrize("path, msg_expected", cases_invalid_path)
+def test_station_reader_invalid_path(path: str, msg_expected: str) -> None:
+    with pytest.raises(FileNotFoundError) as excinfo:
+        Subway(path)
+        assert msg_expected in str(excinfo.value)

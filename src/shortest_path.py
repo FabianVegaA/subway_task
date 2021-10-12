@@ -58,8 +58,8 @@ class ShortestPath:
             Path
         """
         assert self.subway.stations is not None
-        assert src in self.subway.stations.keys()
-        assert dst in self.subway.stations.keys()
+        assert src in self.subway.stations.keys(), "Source station not found"
+        assert dst in self.subway.stations.keys(), "Destination not found"
 
         if src == dst:
             return Path([self.subway.stations[src]])

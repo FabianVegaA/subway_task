@@ -49,3 +49,35 @@ def test_shortest_path(case: Tuple[str, str, str, str], expected: str) -> None:
     )
 
     assert str(shortest_path) == expected
+
+
+cases_shortest_path_exception: List[Tuple[Tuple[str, str, str, str]]] = [
+    (("tests/cases/case_0.txt", "a", "z", ""), "a -> z"),
+    (("tests/cases/case_0.txt", "a", "z", "g"), "a -> z"),
+]
+
+
+@pytest.mark.parametrize("case, expected", cases_shortest_path_exception)
+def test_shortest_path_exception(
+    case: Tuple[str, str, str, str], expected: str
+) -> None:
+    path, init_st, final_st, color = case
+
+    with pytest.raises(ValueError):
+        ShortestPath(path).find_shortest_path(init_st, final_st, color)
+
+
+cases_src_dest_exception: List[Tuple[Tuple[str, str, str]]] = [
+    (("tests/cases/case_0.txt", "a", "y"), "Destination not found"),
+    (("./tests/cases/case_0.txt", "x", "y"), "Source not found"),
+]
+
+
+@pytest.mark.parametrize("case, expected", cases_src_dest_exception)
+def test_src_dest_exception(case: Tuple[str, str, str], expected: str) -> None:
+    path, init_st, final_st = case
+
+    with pytest.raises(AssertionError) as execinfo:
+        ShortestPath(path).find_shortest_path(init_st, final_st, "")
+
+        assert expected in str(execinfo.value)

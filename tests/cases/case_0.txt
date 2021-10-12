@@ -2,6 +2,7 @@
 a
 b r
 c g
+z
 #END STATIONS
 
 #ROUTES

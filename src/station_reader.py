@@ -65,6 +65,9 @@ class Subway:
 
     def _read_stations(self) -> None:
 
+        if not re.match(r"^.+\.txt$", self._path):
+            raise FileNotFoundError("Invalid file")
+
         with open(self._path) as file:
             while line := file.readline():
 

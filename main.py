@@ -2,7 +2,7 @@ import argparse
 import os
 import sys
 
-from src.shortest_path import ShortestPath
+from src.subway_task.shortest_path import ShortestPath
 
 
 def main(*args):

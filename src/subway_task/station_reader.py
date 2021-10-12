@@ -56,6 +56,7 @@ class Subway:
             self._read_stations()
 
     def num_station(self):
+        assert self.stations is not None
         return len(self.stations)
 
     def _read_stations(self) -> None:
@@ -110,6 +111,7 @@ class Subway:
             self.routes.append(route)
 
     def _get_neighbors(self, st):
+        assert self.routes is not None
         for s1, s2 in self.routes:
             if st in [s1, s2]:
                 yield s1 if s1 != st else s2

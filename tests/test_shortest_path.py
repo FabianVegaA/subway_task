@@ -2,8 +2,8 @@ from typing import List, Tuple
 
 import pytest
 
-from src.shortest_path import Path, ShortestPath
-from src.station_reader import Subway
+from src.subway_task.shortest_path import Path, ShortestPath
+from src.subway_task.station_reader import Subway
 
 cases_neighbors: List[Tuple[Tuple[str, str, str], List[str]]] = [
     (("tests/cases/case_0.txt", "a", "g"), ["c"]),
@@ -60,8 +60,10 @@ def test_shortest_path_exception(
 ) -> None:
     path, init_st, final_st, color = case
 
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError) as excinfo:
         ShortestPath(path).find_shortest_path(init_st, final_st, color)
+
+        assert f"No path from {init_st} to {final_st}" == excinfo.value.args[0]
 
 
 cases_src_dest_exception: List[Tuple[Tuple[str, str, str]]] = [

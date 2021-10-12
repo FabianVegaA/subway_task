@@ -1,6 +1,6 @@
 from typing import Dict, Iterable, List, Optional
 
-from src.station_reader import Station, Subway
+from src.subway_task.station_reader import Station, Subway
 
 
 class Path:
@@ -14,10 +14,11 @@ class Path:
 
         default: str = "Without Color"
 
-        stations: List[Station] = []
+        stations: List[str] = []
 
         for st in self.stations:
-            stations.append(f"({st.name}, {st.color or default})")
+            assert st is not None
+            stations.append(f"({st.name}, {st.type or default})")
 
         return " -> ".join(stations)
 

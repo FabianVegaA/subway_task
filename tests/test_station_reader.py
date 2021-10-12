@@ -32,6 +32,14 @@ def test_station_reader(path: str, expected: Station) -> None:
         assert station.name == expected_station.name
         assert station.type == expected_station.type
 
+
+@pytest.mark.parametrize("path, expected", cases)
+def test_stations(path: str, expected: Station) -> None:
+    subway = Subway(path)
+
+    assert len(subway.routes) > 0
+    assert len(subway.stations) > 0
+
     for (st_1, st_2), (est_1, est_2) in zip(subway.routes, expected.routes):
         assert st_1.name == est_1 and st_2.name == est_2
 

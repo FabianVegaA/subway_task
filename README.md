@@ -10,6 +10,7 @@
   - [Detalles de la implementación](#detalles-de-la-implementación)
   - [Herramientas utilizadas](#herramientas-utilizadas)
   - [Testing](#testing)
+  - [Conclusiones](#conclusiones)
 
 ## Introducción
 
@@ -120,3 +121,7 @@ Como metodología base del desarrollo utilice Test-Driven Development, de este m
 Aquí un screenshot del reporte que entrega Pytest:
 
 ![reporte](screenshots/pytest-cov.png)
+
+## Conclusiones
+
+Este proyecto fue muy satisfactorio, pues me permitio utilizar mis conocimientos algoritmos y estructuras de datos, a su vez con tecnicas de desarrollo de software como TDD, y mis conocimientos de Python.

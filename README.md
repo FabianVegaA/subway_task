@@ -10,6 +10,7 @@
   - [Detalles de la implementación](#detalles-de-la-implementación)
   - [Herramientas utilizadas](#herramientas-utilizadas)
   - [Testing](#testing)
+    - [Ejecución de tests](#ejecución-de-tests)
   - [Conclusiones](#conclusiones)
 
 ## Introducción
@@ -49,13 +50,15 @@ Para las estaciones se debe indicar el nombre de la estación y su color separad
 
 ### Ejecución del programa
 
+**El programa esta hecho con Python3.8, por lo que es necesario la version >= 3.8, para utilizarlo.**
+
 Para ejecutar el programa con el archivo de entrada de ejemplo se debe utilizar el siguiente comando:
 
 ```shell
 python3 main.py source destination filename --verbose
 ```
 
-> Para agregar el color del tren se debe agregar  `--color <color>`, por defecto el tren es sin color.
+> Para agregar el color del tren se debe agregar `--color <color>`, por defecto el tren es sin color.
 
 Output:
 
@@ -105,7 +108,7 @@ El cual se aprovecha de una cola para poder encontrar una solución iterativa si
 Para el desarrollo del programa se utilizaron las siguientes herramientas:
 
 - mypy: Para la validación de tipos de datos
-- black: Para el correcto formateo  del código
+- black: Para el correcto formateo del código
 - isort: Para organizar los imports
 - flake8: Para la linting de código
 - pytest: Para la ejecución de tests
@@ -117,6 +120,16 @@ Adicionalmente se implementó la automatización de los tests utilizando GitHub 
 ## Testing
 
 Como metodología base del desarrollo utilicé Test-Driven Development, de este modo se asegura un buen funcionamiento de cada implementación, y a su vez que el programa funcione correctamente.
+
+### Ejecución de tests
+
+Para esto es necesario instalar las dependencias del ambiente de desarrollo:
+
+`pip install -r requirements_dev.txt`
+
+Para obtener una visión de todas las pruebas que se pueden realizar, se debe ejecutar el siguiente comando:
+
+`pytest --cov-report term-missing --cov `
 
 Aquí un screenshot del reporte que entrega Pytest:
 

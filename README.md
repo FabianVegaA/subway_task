@@ -16,7 +16,7 @@
 
 El proyecto conciste en un programa capaz de encontrar la ruta más corta entre dos puntos en un mapa de una red de metro.
 
-Exite 3 tipos de estaciones contemplados inicialmente para el programa, pero pueden añadirse más. Las estaciones se pueden asociar con un color (Rojo o Verde), estas indican que un tren exprés Verde pasará solo por estaciones sin color o Verdes, y un tren exprés de color Rojo pasará solo por estaciones sin color o Roja.
+Exiten 3 tipos de estaciones contemplados inicialmente, pero pueden añadirse más. Las estaciones se pueden asociar con un color (Rojo o Verde), estas indican que un tren exprés Verde pasará solo por estaciones sin color o Verdes, y un tren exprés de color Rojo pasará solo por estaciones sin color o Rojas.
 
 Por ejemplo:
 ![grafo con estaciones](screenshots/graph.png)
@@ -45,17 +45,17 @@ c a
 #END ROUTES
 ```
 
-Para las estaciones se debe indicar el nombre de la estación y su color separado por un espacio en el caso de no tener color no es necesario añardir nada. Del mismo modo las rutas se deben indicar con los nombres de las estaciones separadas por un espacio.
+Para las estaciones se debe indicar el nombre de la estación y su color separado por un espacio, en el caso de no tener color, no es necesario añadir algo. Del mismo modo las rutas se deben indicar con los nombres de las estaciones separadas por un espacio.
 
 ### Ejecución del programa
 
-Para ejercer el programa con el archivo de entrada de ejemplo, se debe ejecutar el siguiente comando:
+Para ejecutar el programa con el archivo de entrada de ejemplo se debe utilizar el siguiente comando:
 
 ```shell
 python3 main.py source destination filename --verbose
 ```
 
-> Para agregar el color del tren se debe agregar `--color <color>`, por defecto el tren es sin color.
+> Para agregar el color del tren se debe agregar  `--color <color>`, por defecto el tren es sin color.
 
 Output:
 
@@ -67,11 +67,11 @@ Número de pasos: 6
 
 ## Detalles de la implementación
 
-Para poder resolver el problema, la primera idea fue verlo como un grafo no poderado, ni dirigido, para recorrer el grafo recorde varios algoritmos que me podrian ayudar entre ellos Backtraking, algoritmo que recorre un arbol en busqueda de una buena solución y capaz de retroceer en su recorrido, Dijkstra, para encontrar las minimas distancias entre todos los nodos, y Kruskal, para encontrar MST. Pero el mejor algoritmo para esta tarea es **Breath First Search**, debido a que es un algoritmo que recorre un grafo en busqueda del camino más corto entre 2 nodos.
+Para poder resolver el problema, la primera idea fue verlo como un grafo no ponderado ni dirigido. Para recorrer el grafo recordé varios algoritmos que me podrían ayudar entre ellos, como Backtraking, un algoritmo que recorre un árbol en búsqueda de una solución factible y capaz de retroceder en su recorrido, Dijkstra, capaz de encontrar las mínimas distancias entre todos los nodos, y Kruskal, para encontrar MST. Pero el mejor algoritmo para esta tarea es **Breath First Search**, debido a que es un algoritmo que recorre un grafo en búsqueda del camino más corto entre 2 nodos.
 
-Además de encontrar un buen algoritmo que me ayudara para la solución, necesitaba una estructura que almacenara los nodos y vertices, para ello, lo más sencillo fue almacenar los nodos en un dicionario, donde el nombre es la llave y dentro una instancia de la clase Station, que a vez almacena el color de la estación y su nombre, para hacer facil su manipulación. Para los vertices decante por algo sencillo, una lista de tuplas con el nombre de ambos vertices.
+Además de encontrar un buen algoritmo que me ayudara en la solución, necesitaba una estructura que almacenara los nodos y vértices. Para ello lo más sencillo fue almacenar los nodos en un diccionario, donde el nombre es la llave y dentro posee una instancia de la clase Station, que a su vez almacena el color de la estación y su nombre, para hacer fácil su manipulación. Para los vértices decanté por algo sencillo, una lista de tuplas con el nombre de ambos vértices.
 
-Uno de los mayores desafios fue desarrollar el programa que entregara los vecinos de un nodo, segun el color del tren, pues si el tren es verde y los nodos vecinos son blancos y rojo, el tren puede ir a los nodos blancos, pero no a los rojos. Para solucionar eso desarrolle este metodo:
+Uno de los mayores desafios fue desarrollar el programa que entregara los vecinos de un nodo según el color del tren, pues si el tren es verde y los nodos vecinos son blancos y rojo, el tren puede ir a los nodos blancos, pero no a los rojos. Para solucionar eso desarrollé este método:
 
 ```Python
 def neighbor_stations(
@@ -98,25 +98,25 @@ def neighbor_stations(
                     yield neighbor
 ```
 
-Que se aprovecha de una cola para poder encontrar una solución iterativa sin necesidad de recurrir a la recursividad. En resumen busca vecinos propios y los vecinos de los nodos vecinos del color diferente al del tren. Como adición, hice que la función fuese un generador, para aprovechar de ocupar la menor cantidad de recursos a la vez.
+El cual se aprovecha de una cola para poder encontrar una solución iterativa sin necesidad de recurrir a la recursividad. En resumen, busca vecinos propios y los vecinos de los nodos vecinos del color diferente al del tren. Como adición, hice que la función fuese un generador, para aprovechar de ocupar la menor cantidad de recursos a la vez.
 
 ## Herramientas utilizadas
 
 Para el desarrollo del programa se utilizaron las siguientes herramientas:
 
 - mypy: Para la validación de tipos de datos
-- black: Para la formateación del código
+- black: Para el correcto formateo  del código
 - isort: Para organizar los imports
 - flake8: Para la linting de código
 - pytest: Para la ejecución de tests
 
-Estos se implemtaron utilizando Pre-commit, lo que permite el despliegue de los cambios con una correcta formateación, linting y testing.
+Estos se implemtaron utilizando Pre-commit, lo que permite el despliegue de los cambios con un correcto formatting, linting y testing.
 
-Adicionalmente se implemento la automatización de los tests utilizando GitHub Action en el proyecto.
+Adicionalmente se implementó la automatización de los tests utilizando GitHub Action en el proyecto.
 
 ## Testing
 
-Como metodología base del desarrollo utilice Test-Driven Development, de este modo aseguro un buen funcionanmiento de cada implemtación, y que el programa funcione correctamente.
+Como metodología base del desarrollo utilicé Test-Driven Development, de este modo se asegura un buen funcionamiento de cada implementación, y a su vez que el programa funcione correctamente.
 
 Aquí un screenshot del reporte que entrega Pytest:
 
@@ -124,4 +124,4 @@ Aquí un screenshot del reporte que entrega Pytest:
 
 ## Conclusiones
 
-Este proyecto fue muy satisfactorio, pues me permitio utilizar mis conocimientos algoritmos y estructuras de datos, a su vez con tecnicas de desarrollo de software como TDD, y mis conocimientos de Python.
+Este proyecto fue muy satisfactorio, pues me permitió utilizar mis conocimientos sobre algoritmos y estructuras de datos, a su vez con técnicas de desarrollo de software como TDD, y mis conocimientos de Python.
